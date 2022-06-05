@@ -6,7 +6,7 @@ const initialState = {
   dishes: [],
 };
 
-export const dishesReducer = (state = initialState, action) => {
+export const dishes = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_DISHES:
       return {

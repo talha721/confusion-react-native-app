@@ -6,7 +6,7 @@ const initialState = {
   comments: [],
 };
 
-export const commentsReducer = (state = initialState, action) => {
+export const comments = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_COMMENTS:
       return {

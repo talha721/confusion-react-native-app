@@ -1,18 +1,19 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { dishesReducer } from "./Reducers/dishesReducer";
-import { commentsReducer } from "./Reducers/commentsReducer";
-import { promotionsReducer } from "./Reducers/promotionsReducer";
-import { leadersReducer } from "./Reducers/leadersReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { dishes } from "./Reducers/dishesReducer";
+import { comments } from "./Reducers/commentsReducer";
+import { promotions } from "./Reducers/promotionsReducer";
+import { leaders } from "./Reducers/leadersReducer";
 
 export const ConfigureStore = () => {
   const store = createStore(
     combineReducers({
-      dishes: dishesReducer,
-      comments: commentsReducer,
-      promotions: promotionsReducer,
-      leaders: leadersReducer,
+      dishes,
+      comments,
+      promotions,
+      leaders,
     }),
     applyMiddleware(thunk, logger)
   );

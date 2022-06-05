@@ -6,7 +6,7 @@ const initialState = {
   promotions: [],
 };
 
-export const promotionsReducer = (state = initialState, action) => {
+export const promotions = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_PROMOTIONS:
       return {
