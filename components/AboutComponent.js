@@ -5,19 +5,8 @@ import { LEADERS } from "../shared/leaders";
 
 function RenderOurHistory() {
   return (
-    <Card>
-      <Text
-        style={{
-          paddingBottom: 10,
-          textAlign: "center",
-          fontWeight: "bold",
-          fontSize: 18,
-        }}
-      >
-        Our History
-      </Text>
-      <Divider />
-      <Text style={{ paddingTop: 10, paddingBottom: 10 }}>
+    <Card title={"Our History"}>
+      <Text style={{ paddingBottom: 10 }}>
         Started in 2010, Ristorante con Fusion quickly established itself as a
         culinary icon par excellence in Hong Kong. With its unique brand of
         world fusion cuisine that can be found nowhere else, it enjoys patronage
@@ -63,24 +52,16 @@ class About extends Component {
     return (
       <ScrollView>
         <RenderOurHistory />
-        <Card>
-          <Text
-            style={{
-              paddingBottom: 10,
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: 18,
-            }}
-          >
-            Corporate History
-          </Text>
-          <Divider />
-          <FlatList
-            data={this.state.leaders}
-            renderItem={renderLeaders}
-            keyExtractor={(leader) => leader.id.toString()}
-          />
-        </Card>
+        <View>
+          <Card title={"Corporate History"}>
+            <FlatList
+              data={this.state.leaders}
+              renderItem={renderLeaders}
+              keyExtractor={(leader) => leader.id.toString()}
+              keyExtractor={(leader) => leader.id.toString()}
+            />
+          </Card>
+        </View>
       </ScrollView>
     );
   }

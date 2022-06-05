@@ -8,19 +8,8 @@ function RenderContact(props) {
 
   if (item != null) {
     return (
-      <Card>
-        <Text
-          style={{
-            paddingBottom: 10,
-            textAlign: "center",
-            fontWeight: "bold",
-            fontSize: 18,
-          }}
-        >
-          Contact Information
-        </Text>
-        <Divider />
-        <Text style={{ paddingTop: 10 }}>{item.address}</Text>
+      <Card title={"Contact Information"}>
+        <Text>{item.address}</Text>
         <Text style={{ paddingTop: 10 }}>Tel: {item.tel}</Text>
         <Text style={{ paddingTop: 10 }}>Fax: {item.fax}</Text>
         <Text style={{ paddingTop: 10 }}>Email: {item.email}</Text>
