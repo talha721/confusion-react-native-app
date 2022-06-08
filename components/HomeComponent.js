@@ -3,6 +3,7 @@ import { ScrollView, Text, View } from "react-native";
 import { Card } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
+import { Loading } from "./LoadingComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -15,20 +16,28 @@ const mapStateToProps = (state) => {
 function RenderItem(props) {
   const item = props.item;
 
-  // console.log("items===============", baseUrl + item.image);
-
-  if (item != null) {
+  if (props.isLoading) {
+    return <Loading />;
+  } else if (props.errMsg) {
     return (
-      <Card
-        featuredTitle={item.name}
-        featuredSubtitle={item.designation}
-        image={{ uri: baseUrl + item.image }}
-      >
-        <Text style={{ margin: 10 }}>{item.description}</Text>
-      </Card>
+      <View>
+        <Text>{props.errMsg}</Text>
+      </View>
     );
   } else {
-    return <View></View>;
+    if (item != null) {
+      return (
+        <Card
+          featuredTitle={item.name}
+          featuredSubtitle={item.designation}
+          image={{ uri: baseUrl + item.image }}
+        >
+          <Text style={{ margin: 10 }}>{item.description}</Text>
+        </Card>
+      );
+    } else {
+      return <View></View>;
+    }
   }
 }
 
@@ -43,6 +52,8 @@ class Home extends Component {
       <ScrollView>
         <RenderItem
           item={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
+          isLoading={this.props.dishes.isLoading}
+          errMsg={this.props.dishes.errMsg}
         />
         <RenderItem
           item={
@@ -50,11 +61,15 @@ class Home extends Component {
               (promotion) => promotion.featured
             )[0]
           }
+          isLoading={this.props.promotions.isLoading}
+          errMsg={this.props.promotions.errMsg}
         />
         <RenderItem
           item={
             this.props.leaders.leaders.filter((leader) => leader.featured)[0]
           }
+          isLoading={this.props.leaders.isLoading}
+          errMsg={this.props.leaders.errMsg}
         />
       </ScrollView>
     );
