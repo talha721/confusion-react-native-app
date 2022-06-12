@@ -16,6 +16,10 @@ export const comments = (state = initialState, action) => {
         comments: action.payload,
       };
 
+    case ActionTypes.ADD_COMMENT:
+      let comment = action.payload;
+      return { ...state, comments: state.comments.concat(comment) };
+
     case ActionTypes.COMMENTS_LOADING:
       return {
         ...state,
