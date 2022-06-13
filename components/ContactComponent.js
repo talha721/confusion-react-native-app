@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { CONTACT } from "../shared/contact";
-import { Card, Divider } from "react-native-elements";
+import { Card } from "react-native-elements";
+import * as Animatable from "react-native-animatable";
 
 function RenderContact(props) {
   const item = props.item;
@@ -33,7 +34,9 @@ class Contact extends Component {
   render() {
     return (
       <View>
-        <RenderContact item={this.state.contactInfo} />
+        <Animatable.View animation={"fadeInDown"} duration={2000} delay={1000}>
+          <RenderContact item={this.state.contactInfo} />
+        </Animatable.View>
       </View>
     );
   }

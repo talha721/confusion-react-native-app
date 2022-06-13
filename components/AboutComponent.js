@@ -4,6 +4,7 @@ import { Card, ListItem } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { Loading } from "./LoadingComponent";
+import * as Animatable from "react-native-animatable";
 
 const mapStateToProps = (state) => {
   return {
@@ -62,25 +63,37 @@ class About extends Component {
     } else if (this.props.leaders.errMsg) {
       return (
         <ScrollView>
-          <History />
-          <Card title={"Corporate History"}>
-            <Text>{this.props.leaders.errMsg}</Text>
-          </Card>
+          <Animatable.View
+            animation={"fadeInDown"}
+            duration={2000}
+            delay={1000}
+          >
+            <History />
+            <Card title={"Corporate History"}>
+              <Text>{this.props.leaders.errMsg}</Text>
+            </Card>
+          </Animatable.View>
         </ScrollView>
       );
     } else {
       return (
         <ScrollView>
-          <History />
-          <View>
-            <Card title={"Corporate History"}>
-              <FlatList
-                data={this.props.leaders.leaders}
-                renderItem={renderLeaders}
-                keyExtractor={(leader) => leader.id.toString()}
-              />
-            </Card>
-          </View>
+          <Animatable.View
+            animation={"fadeInDown"}
+            duration={2000}
+            delay={1000}
+          >
+            <History />
+            <View>
+              <Card title={"Corporate History"}>
+                <FlatList
+                  data={this.props.leaders.leaders}
+                  renderItem={renderLeaders}
+                  keyExtractor={(leader) => leader.id.toString()}
+                />
+              </Card>
+            </View>
+          </Animatable.View>
         </ScrollView>
       );
     }

@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { postFavorite } from "../redux/Actions/favoriteActions";
 import { postComment } from "../redux/Actions/commentsAction";
+import * as Animatable from "react-native-animatable";
 
 const mapStateToProps = (state) => {
   return {
@@ -33,29 +34,33 @@ function RenderDish(props) {
 
   if (dish != null) {
     return (
-      <Card featuredTitle={dish.name} image={{ uri: baseUrl + dish.image }}>
-        <Text style={{ margin: 10 }}>{dish.description}</Text>
-        <View style={styles.icons}>
-          <Icon
-            name={props.favorite ? "heart" : "heart-o"}
-            type="font-awesome"
-            color="#f50"
-            raised
-            reverse
-            onPress={() =>
-              props.favorite ? console.log("already favorite") : props.onPress()
-            }
-          />
-          <Icon
-            name="pencil"
-            type="font-awesome"
-            raised
-            reverse
-            color="#512DA8"
-            onPress={() => props.toggleModal()}
-          />
-        </View>
-      </Card>
+      <Animatable.View animation={"fadeInDown"} duration={2000} delay={1000}>
+        <Card featuredTitle={dish.name} image={{ uri: baseUrl + dish.image }}>
+          <Text style={{ margin: 10 }}>{dish.description}</Text>
+          <View style={styles.icons}>
+            <Icon
+              name={props.favorite ? "heart" : "heart-o"}
+              type="font-awesome"
+              color="#f50"
+              raised
+              reverse
+              onPress={() =>
+                props.favorite
+                  ? console.log("already favorite")
+                  : props.onPress()
+              }
+            />
+            <Icon
+              name="pencil"
+              type="font-awesome"
+              raised
+              reverse
+              color="#512DA8"
+              onPress={() => props.toggleModal()}
+            />
+          </View>
+        </Card>
+      </Animatable.View>
     );
   } else {
     return <View></View>;
@@ -78,13 +83,15 @@ function RenderComments(props) {
   };
 
   return (
-    <Card title="Comments">
-      <FlatList
-        data={comments}
-        renderItem={renderCommentItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    </Card>
+    <Animatable.View animation={"fadeInUp"} duration={2000} delay={1000}>
+      <Card title="Comments">
+        <FlatList
+          data={comments}
+          renderItem={renderCommentItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </Card>
+    </Animatable.View>
   );
 }
 
